@@ -1,0 +1,16 @@
+<form [formGroup]="validaForm" (ngSubmit)="enviar(validaForm.value)" class="contenedor">
+  <div class="input-group">
+    <label for="">Número de páginas </label>
+    <button (click)="incremento(numPages, $event)" id="incPage">+</button>
+    <input formControlName="numeroPaginas" type="text" min="0" name="pages" [(ngModel)]="numPages">
+    <button (click)="decremento(numPages, $event)" id="decPage">-</button>
+    <span class="mesageError" *ngIf="campoEsValido('numeroPaginas')">Ingresa un valor válido</span>
+  </div>
+  <div>
+    <label for="">Número de idiomas </label>
+    <button (click)="incremento(numLanguages, $event)" id="incLang">+</button>
+    <input formControlName="numeroIdiomas" type="text" min="0" [(ngModel)]="numLanguages">
+    <button (click)="decremento(numLanguages, $event)" id="decLang">-</button>
+    <span class="mesageError" *ngIf="campoEsValido('numeroIdiomas')">Ingresa un valor válido</span>
+  </div>
+</form>
