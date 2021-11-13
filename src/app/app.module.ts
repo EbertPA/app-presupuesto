@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PanelComponent } from './panel/panel.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { PagesComponent } from './pages/pages.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     HomeComponent,
     PageNotFoundComponent,
     PanelComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,

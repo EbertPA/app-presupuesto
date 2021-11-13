@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-// import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators, FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
@@ -9,21 +8,10 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class PanelComponent implements OnInit {
 
-  // @ViewChild('incPage') sumapage?: ElementRef;
-  // @ViewChild('decPage') restapage?: ElementRef;
-  // @ViewChild('incLang') sumalang?: ElementRef;
-  // @ViewChild('decLang') restalang?: ElementRef;
-
-  // validaForm: FormGroup = new FormGroup({
-  //   'numeroPaginas': new FormControl(0),
-  //   'numeroIdiomas': new FormControl(0)
-  // });
-
-
-    validaForm: FormGroup = this.fb.group({
-    numeroPaginas: ['', [Validators.required, Validators.min(0)] ],
-    numeroIdiomas: ['', [Validators.required, Validators.min(0)]],
-    })
+  validaForm: FormGroup = this.fb.group({
+  numeroPaginas: ['', [Validators.required, Validators.min(0)] ],
+  numeroIdiomas: ['', [Validators.required, Validators.min(0)]],
+  })
 
   numPages: number = 0;
   numLanguages:number = 0;
@@ -33,20 +21,22 @@ export class PanelComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder
-  ) {
-    // this.validaForm = this.fb.group({
-    //   numeroPaginas: ['', [Validators.compose([Validators.min(1), Validators.required])]],
-    //   numeroIdiomas: ['', [Validators.compose([Validators.min(1), Validators.required])]]
-    // })
-   }
+  ) {}
 
   ngOnInit(): void {
   }
 
-  enviar(values:HTMLFormElement) {
-    // console.log("values: "+ values.numeroPaginas);
-    this.pageSelected.emit(values.numeroPaginas);
-    this.languageSelected.emit(values.numeroIdiomas);
+  // enviar(values:HTMLFormElement) {
+  enviar(pages?: number, tipo?: string) {
+    if(tipo != undefined){
+        if(tipo === 'pages'){
+        this.pageSelected.emit(pages);
+        this.languageSelected.emit(this.numLanguages);
+      }else{
+        this.pageSelected.emit(this.numPages);
+        this.languageSelected.emit(pages);
+      }
+  }
   }
 
   incremento(inc: number, event: Event){
@@ -72,6 +62,15 @@ export class PanelComponent implements OnInit {
   campoEsValido(campo: string) {
     return this.validaForm.controls[campo].errors
             && this.validaForm.controls[campo].touched;
+  }
+
+  pages(num: any, npages: string){
+    this.numPages = num;
+    this.enviar(this.numPages, npages);
+  }
+  languages(num: any, nlang: string){
+    this.numLanguages = num;
+    this.enviar(this.numLanguages, nlang);
   }
 
 }

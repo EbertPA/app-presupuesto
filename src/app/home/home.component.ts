@@ -75,16 +75,12 @@ export class HomeComponent implements OnInit {
   }
 
   onPageSelected(numPage: number){
-    // if(numPage > 0){
-      this.totalPages = numPage;
-    // }
+    this.totalPages = numPage;
     this.calculateTotal();
   }
 
   onLanguageSelected(numLanguage: number){
-    // if(numLanguage > 0){
-      this.totalLanguages = numLanguage;
-    // }
+    this.totalLanguages = numLanguage;
     this.calculateTotal();
   }
 

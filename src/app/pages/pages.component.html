@@ -1,0 +1,7 @@
+<!-- <button (click)="suma(numPage)">+</button> -->
+<button (click)="suma()">+</button>
+<input type="text" name="num" [(ngModel)]="numPage" (change)="comprueba(numPage)">
+<!-- <button (click)="resta(numPage)">-</button> -->
+<button (click)="resta()">-</button>
+<span *ngIf="numValid" class="mesageError">{{ error }}</span>
+
